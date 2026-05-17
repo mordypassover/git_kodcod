@@ -57,5 +57,3 @@ def merge_sorted_lists(list1, list2):
 
 def rotate_list(lst,k):
     return [lst[(index + 1 + k) % len(lst)] for index in range(len(lst))]
-
-print(rotate_list([1, 2, 3, 4, 5], k = 7))
