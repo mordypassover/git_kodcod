@@ -63,5 +63,3 @@ def symmetric_difference(list1, list2):
     all_set = set(list1) | set(list2)
     intersection_set = set(list1) & set(list2)
     return list(all_set.difference(intersection_set))
-
-print(symmetric_difference( [1, 2, 3, 4], [3, 4, 5, 6]))
