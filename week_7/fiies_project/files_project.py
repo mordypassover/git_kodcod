@@ -13,9 +13,11 @@ def load_tasks(filename):
     dict_list = list()
     with open(filename, "r", encoding="utf-8") as f:
         for line in f.readlines():
-            if line.strip():
-                temp_list = (line.strip().split("|"))
-                dict_list.append({"id": temp_list[0], "status": temp_list[1], "desc":temp_list[2]})
+            if line == "\n":
+                empty += 1
+                continue
+            temp_list = (line.strip().split("|"))
+            dict_list.append({"id": temp_list[0], "status": temp_list[1], "desc":temp_list[2]})
     return dict_list
 
 
@@ -37,7 +39,7 @@ def add_task(filename, description):
     הפרמטר שניתן =description -
     """
     all_tasks = load_tasks(filename)
-    all_tasks.append({"id": len(all_tasks) + 1, "status": "pending", "desc":description})
+    all_tasks.append({"id": int(all_tasks[-1]["id"]) + 1, "status": "pending", "desc":description})
     save_tasks(filename, all_tasks)
 
 
@@ -55,12 +57,7 @@ def complete_task(filename, task_id):
     if not flag:
         print(f"id {task_id} not found")
 
-
-
-
     save_tasks(filename, all_tasks)
-
-
 
 
 
