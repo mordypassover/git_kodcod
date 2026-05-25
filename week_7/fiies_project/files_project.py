@@ -14,7 +14,6 @@ def load_tasks(filename):
     with open(filename, "r", encoding="utf-8") as f:
         for line in f.readlines():
             if line == "\n":
-                empty += 1
                 continue
             temp_list = (line.strip().split("|"))
             dict_list.append({"id": temp_list[0], "status": temp_list[1], "desc":temp_list[2]})
