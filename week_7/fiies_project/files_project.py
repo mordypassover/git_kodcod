@@ -1,5 +1,6 @@
 import os.path
 from asyncio import all_tasks
+from os import remove
 
 
 def load_tasks(filename):
@@ -27,7 +28,7 @@ def save_tasks(filename, tasks):
     """
     with open(filename, "w", encoding="utf-8") as f:
         for task in tasks:
-            f.write(f"{task["id"]}|{task["status"]}|{task["desc"]}\n")
+            f.write(f"{task['id']}|{task['status']}|{task['desc']}\n")
     return
 
 def add_task(filename, description):
@@ -61,6 +62,20 @@ def complete_task(filename, task_id):
     save_tasks(filename, all_tasks)
 
 
+def remove_task(filename: str, id: str):
+    """
+    removes file by id
+    """
+    all_tasks = load_tasks(filename)
+
+    for index in range(len(all_tasks)):
+        if id == all_tasks[index]["id"]:
+            all_tasks.pop(index)
+            break
+
+
+    save_tasks(filename, all_tasks)
+
 
 def main():
     FILENAME = "tasks.txt"
@@ -69,7 +84,8 @@ def main():
         print('הצג משימות 1.')
         print('הוסף משימה 2.')
         print('סמן כהושלם 3.')
-        print('יציאה 4.')
+        print('הסר משימה 4.')
+        print('יציאה5.')
         choice = input('בחירה:')
         if choice == '1':
             print(load_tasks(FILENAME))
@@ -80,7 +96,10 @@ def main():
         elif choice == '3':
             task_id = int(input('משימה מספר:'))
             complete_task(FILENAME, task_id)
-        elif choice == '4':
+        elif choice == "4":
+            task_id = input('משימה מספר:')
+            remove_task(FILENAME, task_id)
+        elif choice == '5':
             print('!להתראות')
             break
         else:
