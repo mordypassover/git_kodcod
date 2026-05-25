@@ -44,25 +44,38 @@
 
 # תרגיל 5
 import logging
-logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
-logger1 = logging.getLogger(__name__)
-logger1.info('Application started')
+# logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
+# logger1 = logging.getLogger(__name__)
+# logger1.info('Application started')
 
 # תרגיל 6
-logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
-logger2 = logging.getLogger(__name__)
+# logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
+# logger2 = logging.getLogger(__name__)
+#
+# def process_payment(user_id, amount):
+#     # print(f'Starting payment for user {user_id}')
+#     logger2.info('Starting payment for user %s', user_id)
+#     if amount <= 0:
+#         # print('ERROR: Invalid amount')
+#         logger2.error('ERROR: Invalid amount %s', user_id)
+#         return
+#     if amount > 10000:
+#         # print('WARNING: Large transaction')
+#         logger2.warning('WARNING: Large transaction %s', user_id)
+#     # print(f'Payment of {amount} completed for user {user_id}')
+#     logger2.info('Payment of %s completed for user %s', amount, user_id)
+# process_payment(12,5)
 
-def process_payment(user_id, amount):
-    # print(f'Starting payment for user {user_id}')
-    logger2.info('Starting payment for user %s', user_id)
-    if amount <= 0:
-        # print('ERROR: Invalid amount')
-        logger2.error('ERROR: Invalid amount %s', user_id)
-        return
-    if amount > 10000:
-        # print('WARNING: Large transaction')
-        logger2.warning('WARNING: Large transaction %s', user_id)
-    # print(f'Payment of {amount} completed for user {user_id}')
-    logger2.info('Payment of %s completed for user %s', amount, user_id)
-process_payment(12,5)
+#תרגיל 7
+# logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s  | %(asctime)s',filename="payments.log", encoding="utf-8")
+# logger3 = logging.getLogger(__name__)
+#
+# def start_warn_end():
+#     logger3.info("func started")
+#     logger3.warning("fonc sent warning!")
+#     logger3.info("fonc ended")
+# start_warn_end()
+
+
+#תרגיל 8
 
