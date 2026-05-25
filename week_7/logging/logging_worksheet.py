@@ -78,4 +78,16 @@ import logging
 
 
 #תרגיל 8
+logging.basicConfig(level=logging.DEBUG, format='%(levelname)s | %(message)s  | %(asctime)s',filename="ex8.log", encoding="utf-8")
+logger4 = logging.getLogger(__name__)
 
+def read_config(filepath):
+    logger4.debug('fonc started %s',filepath)
+    try:
+        with open(filepath) as f:
+            data = f.read()
+            logger4.info('successfully red config %s', filepath )
+        return data
+    except FileNotFoundError:
+        logger4.error('unsuccessfully red config %s', filepath)
+    return None
