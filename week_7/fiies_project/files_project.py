@@ -62,6 +62,18 @@ def complete_task(filename, task_id):
     save_tasks(filename, all_tasks)
 
 
+def list_tasks(filename):
+    """
+    :מציגה את כל המשימות בפורמט מסודר
+    ]✓[ 2 [ 2 |לכת תרתרג 1
+    ] [ 3 | לסיים את הפרויקט
+    """
+    all_tasks = load_tasks(filename)
+    for task in all_tasks:
+
+        print(f"{task['desc']}| {task['id']} [{'✓' if task['status'] == 'dune' else ' '}]")
+
+
 def remove_task(filename: str, id: str):
     """
     removes file by id
@@ -72,9 +84,10 @@ def remove_task(filename: str, id: str):
         if id == all_tasks[index]["id"]:
             all_tasks.pop(index)
             break
-
-
     save_tasks(filename, all_tasks)
+
+
+
 
 
 def main():
@@ -88,7 +101,7 @@ def main():
         print('יציאה5.')
         choice = input('בחירה:')
         if choice == '1':
-            print(load_tasks(FILENAME))
+            list_tasks(FILENAME)
         elif choice == '2':
             desc = input(' :תיאור המשימה')
             add_task(FILENAME, desc)
