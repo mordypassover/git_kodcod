@@ -38,7 +38,9 @@ def add_task(filename, description):
     הפרמטר שניתן =description -
     """
     all_tasks = load_tasks(filename)
-    all_tasks.append({"id": int(all_tasks[-1]["id"]) + 1, "status": "pending", "desc":description})
+    last_id = 1 if not os.path.exists(filename) else int(all_tasks[-1]["id"]) + 1
+
+    all_tasks.append({"id": last_id , "status": "pending", "desc":description})
     save_tasks(filename, all_tasks)
 
 
