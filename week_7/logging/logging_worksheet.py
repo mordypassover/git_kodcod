@@ -43,3 +43,7 @@
 # %(message)s: הסבר מה הלוג מייצג
 
 # תרגיל 5
+import logging
+logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
+logger = logging.getLogger(__name__)
+logger.info('Application started')
