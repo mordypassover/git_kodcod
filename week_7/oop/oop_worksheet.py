@@ -84,4 +84,13 @@ class Player:
         return Player.players
 
 
+#9
+
+class Money:
+    def __init__(self, amount):
+        self._amount = amount
+
+    def is_more_than(self, other):
+        return self._amount > other._amount
+
 
