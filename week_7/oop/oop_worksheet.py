@@ -46,7 +46,17 @@ class BankAccount:
 
 
     def deposit(self, amount):
-        self._balance += amount if amount >0 else self._balance
+        self._balance += amount if amount > 0 else self._balance
 
     def withdraw(self, amount):
         self._balance -= amount if amount <= self._balance  else self._balance
+
+
+#6
+
+class  Temperature:
+    def __init__(self, temp):
+        self._temp = temp
+
+    def to_fahrenheit(self):
+        return (self._temp * 1.8) +32
