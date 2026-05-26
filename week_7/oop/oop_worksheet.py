@@ -73,5 +73,15 @@ s1._name = "coty"
 # print(s1._name, s2._name)
 
 
+# 8
+
+class Player:
+    players = 0
+    def __init__(self):
+        Player.players += 1
+
+    def get_players(self):
+        return Player.players
+
 
 
