@@ -103,4 +103,21 @@ import logging
 # אפשר להוסיף הסבר ושעה
 
 #תרגיל 11
+# * info
+# * error
+# * info
+# * warning
+# * info
+# * warning
 
+#תרגיל 12
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+def register_user(email, password, age):
+    logger.debug('register')
+    if age < 18:
+        logger.error('bad')
+        return
+    logger.info('ok email=%s password=%s', email, bool(password))
+    logger.info('done')
