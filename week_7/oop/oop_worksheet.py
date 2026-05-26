@@ -90,8 +90,11 @@ class Money:
     def __init__(self, amount):
         self._amount = amount
 
+    def get_amount(self):
+        return self._amount
+
     def is_more_than(self, other):
-        return self._amount > other._amount
+        return self._amount > other.get_amount()
 
 
 #10
@@ -107,5 +110,8 @@ class Playlist:
         self._song_titles.remove(title)
 
     def __str__(self):
+        """
+        shows the playlist
+        """
         return str(self._song_titles)
 
