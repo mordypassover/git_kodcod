@@ -36,3 +36,17 @@ class Point:
 
     def __str__(self):
         return f"({self.x}, {self.y})"
+
+
+#5
+
+class BankAccount:
+    def __init__(self, balance = 0):
+        self._balance = balance
+
+
+    def deposit(self, amount):
+        self._balance += amount if amount >0 else self._balance
+
+    def withdraw(self, amount):
+        self._balance -= amount if amount <= self._balance  else self._balance
