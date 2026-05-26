@@ -60,3 +60,18 @@ class  Temperature:
 
     def to_fahrenheit(self):
         return (self._temp * 1.8) +32
+
+#7
+
+class Student:
+    _school = "Kodcode"
+    def __init__(self, name):
+        self._name = name
+
+s1, s2 = Student("moti"), Student("yoti")
+s1._name = "coty"
+# print(s1._name, s2._name)
+
+
+
+
