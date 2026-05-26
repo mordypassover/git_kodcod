@@ -68,8 +68,8 @@ class Student:
     def __init__(self, name):
         self._name = name
 
-s1, s2 = Student("moti"), Student("yoti")
-s1._name = "coty"
+# s1, s2 = Student("moti"), Student("yoti")
+# s1._name = "coty"
 # print(s1._name, s2._name)
 
 
@@ -93,4 +93,19 @@ class Money:
     def is_more_than(self, other):
         return self._amount > other._amount
 
+
+#10
+
+class Playlist:
+    def __init__(self):
+        self._song_titles = []
+
+    def add_title(self, title):
+        self._song_titles.append(title)
+
+    def remove(self, title):
+        self._song_titles.remove(title)
+
+    def __str__(self):
+        return str(self._song_titles)
 
