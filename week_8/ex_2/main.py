@@ -15,5 +15,17 @@ def get_admin():
 def get_user_data(user_id):
     return {"user id ": user_id, "name": "", "email": ""}
 
+@app.get("/calc/{a}/{op}/{b}")
+def calc(a:int, op:str, b:int):
+    ops = {"add" : (lambda x,y : x + y), "sub": (lambda x,y : x - y),
+           "molt":(lambda x,y : x * y) ,"div":lambda x,y : x /y}
+    if op in ops:
+        try:
+            return {"operator": {op} ,"result": (ops[op](a, b))}
+        except ZeroDivisionError as e:
+            return {"operator":{op},"result":e.args[0]}
+    else:
+        return {"operator":{op},"result":"not sported operator"}
+
 
 uvicorn.run(app)
