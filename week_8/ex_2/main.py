@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
+import datetime
 
 app = FastAPI()
 
@@ -27,5 +28,8 @@ def calc(a:int, op:str, b:int):
     else:
         return {"operator":{op},"result":"not sported operator"}
 
+@app.get("/status")
+def get_status():
+    return {"cornet time" : datetime.datetime, "server name": "my server 2"}
 
 uvicorn.run(app)
