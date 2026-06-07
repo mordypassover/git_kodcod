@@ -11,3 +11,7 @@ def create_intel_messages():
 @app.get("/soldiers-db/{table_name}")
 def get_schema_by_name(table_name:str):
     return setup_messages.get_a_schema(table_name)
+
+
+if __name__ == "__main__":
+    uvicorn.run(app)
