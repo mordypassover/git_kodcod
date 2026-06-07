@@ -30,3 +30,4 @@ def create_schema():
     cursor.close()
     conn.close()
 
+    return "table created successfully"
