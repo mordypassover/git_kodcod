@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import uvicorn
 import setup_messages
 
@@ -10,7 +10,10 @@ def create_intel_messages():
 
 @app.get("/soldiers-db/{table_name}")
 def get_schema_by_name(table_name:str):
-    return setup_messages.get_a_schema(table_name)
+    try:
+        return setup_messages.get_a_schema(table_name)
+    except Exception as e:
+        raise HTTPException(status_code=404, detail={e:"table not found"})
 
 @app.get("/messages")
 def get_messages():

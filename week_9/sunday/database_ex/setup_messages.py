@@ -39,5 +39,3 @@ def get_a_schema(name:str):
     cursor.close()
     conn.close()
     return [{"column": col[0], "type": col[1]} for col in columns]
-
-print(get_a_schema("soldiers"))
