@@ -25,8 +25,6 @@ def create_schema():
     cursor.execute(create_table_sql)
     conn.commit()
 
-    print("table created successfully")
-
     cursor.close()
     conn.close()
 
