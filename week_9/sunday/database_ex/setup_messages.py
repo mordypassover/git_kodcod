@@ -29,3 +29,15 @@ def create_schema():
     conn.close()
 
     return "table created successfully"
+
+
+def get_a_schema(name:str):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DESCRIBE " + name)
+    columns = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return [{"column": col[0], "type": col[1]} for col in columns]
+
+print(get_a_schema("soldiers"))
