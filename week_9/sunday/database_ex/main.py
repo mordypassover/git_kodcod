@@ -12,6 +12,9 @@ def create_intel_messages():
 def get_schema_by_name(table_name:str):
     return setup_messages.get_a_schema(table_name)
 
+@app.get("/messages")
+def get_messages():
+    return {"messages": []}
 
 if __name__ == "__main__":
     uvicorn.run(app)
