@@ -23,3 +23,9 @@ def create_new_soldier(soldier_data:dict):
     new_id = db.create_soldier(name, srank, unit)
     return {"new soldiers id": new_id}
 
+@app.put("/soldiers/{id}")
+def update_soldier_data(soldier_id:int, data:dict):
+    is_updated = db.update_soldier(soldier_id, data)
+    if not is_updated:
+        raise HTTPException(status_code=404, detail="soldier not found")
+    return "update successful"
