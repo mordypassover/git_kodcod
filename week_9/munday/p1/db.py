@@ -47,3 +47,19 @@ def create_soldier(name: str , srank:str, unit: str)-> int:
     conn.close()
     return new_id
 
+def update_soldier(soldier_id:int, data:dict ):
+    conn = get_connection()
+    cursor = conn.cursor()
+    set_parts = [f"{key} = %s" for key in data.keys()]
+    set_clause = ", ".join(set_parts)
+
+    sql = "UPDATE soldiers SET " + set_clause +" WHERE id = %s"
+    values = list(data.values()) + [soldier_id]
+
+    cursor.execute(sql, values)
+    conn.commit()
+
+    changed_line = cursor.rowcount > 0
+    cursor.close()
+    conn.close()
+    return changed_line
