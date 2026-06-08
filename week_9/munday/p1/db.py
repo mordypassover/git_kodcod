@@ -31,3 +31,19 @@ def get_by_id(soldier_id: int) -> dict | None:
     cursor.close()
     conn.close()
     return soldier
+
+
+def create_soldier(name: str , srank:str, unit: str)-> int:
+    conn = get_connection()
+    cursor = conn.cursor()
+    sql = "INSERT INTO soldiers (name, srank, unit) VALUES (%s, %s, %s)"
+    values_to_change = (name, srank, unit)
+    cursor.execute(sql, values_to_change)
+    conn.commit()
+
+    new_id = cursor.lastrowid
+
+    cursor.close()
+    conn.close()
+    return new_id
+
