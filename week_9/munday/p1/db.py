@@ -47,7 +47,7 @@ def create_soldier(name: str , srank:str, unit: str)-> int:
     conn.close()
     return new_id
 
-def update_soldier(soldier_id:int, data:dict ):
+def update_soldier(soldier_id:int, data:dict )->bool:
     conn = get_connection()
     cursor = conn.cursor()
     set_parts = [f"{key} = %s" for key in data.keys()]
@@ -63,3 +63,15 @@ def update_soldier(soldier_id:int, data:dict ):
     cursor.close()
     conn.close()
     return changed_line
+
+
+def delete_soldier(soldier_id)->bool:
+    conn = get_connection()
+    cursor = conn.cursor()
+    sql = "DELETE FROM soldiers WHERE id = %s"
+    cursor.execute(sql, (soldier_id,))
+    changed_line = cursor.rowcount > 0
+    cursor.close()
+    conn.close()
+    return changed_line
+
