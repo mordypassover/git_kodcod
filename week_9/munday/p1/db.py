@@ -70,6 +70,7 @@ def delete_soldier(soldier_id)->bool:
     cursor = conn.cursor()
     sql = "DELETE FROM soldiers WHERE id = %s"
     cursor.execute(sql, (soldier_id,))
+    conn.commit()
     changed_line = cursor.rowcount > 0
     cursor.close()
     conn.close()

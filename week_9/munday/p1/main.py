@@ -31,7 +31,7 @@ def update_soldier_data(soldier_id:int, data:dict):
     return "update successful"
 
 @app.delete("/soldiers/{id}")
-def remove_soldier_by_id(soldier_id):
+def remove_soldier_by_id(soldier_id:int):
     deleted=db.delete_soldier(soldier_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="soldier not found")
