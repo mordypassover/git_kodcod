@@ -61,3 +61,13 @@ def get_missing_rank():
     cursor.close()
     conn.close()
     return soldiers_with_no_rank
+
+def get_by_unit(unit):
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+    query = "SELECT * FROM soldiers WHERE unit = %s ORDER BY name ASC"
+    cursor.execute(query,(unit,))
+    soldiers = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return soldiers
