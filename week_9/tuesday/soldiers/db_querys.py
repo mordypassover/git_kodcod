@@ -31,3 +31,13 @@ def get_active_sorted_by_name(order="ASC"):
     cursor.close()
     conn.close()
     return sorted_soldiers
+
+def get_distinct_units()-> list:
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+    query = "SELECT DISTINCT unit FROM soldiers"
+    cursor.execute(query)
+    distinct_units = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return distinct_units
