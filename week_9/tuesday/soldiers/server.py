@@ -26,3 +26,7 @@ def get_units():
 @app.get("/soldiers/search")
 def search_in_soldiers(term:str):
     return db_querys.search_by_name(term)
+
+@app.get("/soldiers/missing-rank")
+def get_soldiers_with_no_rank():
+    return db_querys.get_missing_rank()
