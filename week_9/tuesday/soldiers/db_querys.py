@@ -41,3 +41,14 @@ def get_distinct_units()-> list:
     cursor.close()
     conn.close()
     return distinct_units
+
+def search_by_name(term):
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+    query = "SELECT * FROM soldiers WHERE name LIKE %s"
+    cursor.execute(query,(f"%{term}%",))
+    search_resalt = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return search_resalt
+
