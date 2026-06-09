@@ -1,3 +1,5 @@
+from idlelib.query import Query
+
 from fastapi import FastAPI, HTTPException
 import uvicorn
 import db_querys
@@ -17,4 +19,10 @@ def get_query_param_and_send(rank=None, sort=None, unit=None):
          response = db_querys.get_all()
     return response
 
+@app.get("/soldiers/units")
+def get_units():
+    return db_querys.get_distinct_units()
 
+@app.get("/soldiers/search")
+def search_in_soldiers(term:str):
+    return db_querys.search_by_name(term)
