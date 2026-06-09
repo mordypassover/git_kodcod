@@ -63,4 +63,9 @@ def create_message(unit: str, classification: str, content: str, source:str | No
     conn.close()
     return new_id
 
+def update_message(message_id: int, data: dict):
+    conn = get_connection()
+    cursor = conn.cursor()
+    data_list = [f"{d_key} = s%" for d_key in data]
+
 
