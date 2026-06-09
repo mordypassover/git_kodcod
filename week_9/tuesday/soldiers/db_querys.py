@@ -71,3 +71,13 @@ def get_by_unit(unit):
     cursor.close()
     conn.close()
     return soldiers
+
+def get_all()->list:
+    conn= get_connection()
+    cursor=conn.cursor(dictionary=True)
+    sql = "SELECT * FROM soldiers ORDER BY id ASC"
+    cursor.execute(sql)
+    all_soldiers = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return all_soldiers
