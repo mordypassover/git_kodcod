@@ -19,3 +19,15 @@ def get_by_rank(rank) -> list :
     conn.close()
     return soldiers
 
+def get_active_sorted_by_name(order="ASC"):
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    if order not in ('ASC', 'DESC'):
+        order = "ASC"
+    query = f"SELECT * FROM soldiers WHERE active=TRUE ORDER BY name {order}"
+    cursor.execute(query)
+    sorted_soldiers = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return sorted_soldiers
