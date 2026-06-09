@@ -52,3 +52,12 @@ def search_by_name(term):
     conn.close()
     return search_resalt
 
+def get_missing_rank():
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+    query = "SELECT * FROM soldiers WHERE srank IS NULL"
+    cursor.execute(query)
+    soldiers_with_no_rank = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return soldiers_with_no_rank
