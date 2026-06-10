@@ -41,3 +41,13 @@ def get_missing_data():
     cursor.close()
     conn.close()
     return no_rank
+
+def get_units_with_multiple_soldiers():
+    conn = get_conn()
+    cursor = conn.cursor(dictionary=True)
+    query = "SELECT unit, COUNT(*) AS total FROM soldiers GROUP BY unit HAVING total > 1"
+    cursor.execute(query)
+    more_then_1_in_unit = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return more_then_1_in_unit
