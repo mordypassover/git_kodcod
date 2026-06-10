@@ -32,4 +32,12 @@ def count_by_unit() -> list:
     conn.close()
     return unit_count
 
-print(get_summary())
+def get_missing_data():
+    conn = get_conn()
+    cursor = conn.cursor(dictionary=True)
+    query = "SELECT * FROM soldiers WHERE srank IS NULL"
+    cursor.execute(query)
+    no_rank = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return no_rank
