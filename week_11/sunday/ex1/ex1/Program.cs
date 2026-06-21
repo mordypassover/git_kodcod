@@ -1,9 +1,4 @@
-﻿using System;
-using System.Runtime.Intrinsics.X86;
-
-
-
-namespace TrackReadout
+﻿namespace TrackReadout
 {
     class Ex1
     {
@@ -15,7 +10,7 @@ namespace TrackReadout
             {
 
 
-                //get input
+                //get input and validate
                 Console.WriteLine("enter track id");
                 string userI1 = Console.ReadLine();
                 if (!int.TryParse(userI1, out int trackId))
@@ -33,7 +28,8 @@ namespace TrackReadout
 
                 Console.WriteLine("enter heading");
                 string userI3 = Console.ReadLine();
-                if (!double.TryParse(userI3, out double heading) && 0 < heading && heading < 360)
+                if (!double.TryParse(userI3, out double heading) &&
+                    0 < heading && heading < 360)
                 {
                     Console.WriteLine("heading not valid");
                     continue;
@@ -41,14 +37,15 @@ namespace TrackReadout
 
                 Console.WriteLine("enter status");
                 string userI4 = Console.ReadLine();
-                bool statusFlag = userI4 == "cruising" | userI4 == "turning" | userI4 == "stoped" | userI4 == "accelerating";
+                bool statusFlag = userI4 == "cruising" | userI4 == "turning" |
+                    userI4 == "stoped" | userI4 == "accelerating";
                 if (!statusFlag)
                 {
                     Console.WriteLine("status not valid");
                     continue;
                 }
 
-                //calc and print
+                //calc and print once all is valid
 
 
                 string speadCatigory;
@@ -57,7 +54,7 @@ namespace TrackReadout
                 else speadCatigory = "fast";
 
                 double idGroup = (double)trackId / 10;
-                double speedPerMinit = (double)speed / 60;
+                double speedPerMinit = speed / 60;
 
                 Console.WriteLine(
                 $"===Track Report===\n" +
