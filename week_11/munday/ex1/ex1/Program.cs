@@ -46,40 +46,33 @@ namespace ex1
             hl.Add(userImput[1]);
             sl.Add(userImput[2]);
         }
-        static void Get(string sid, List<int> idl, List<int> hl, List<int> sl)
+        static void Get(int id, List<int> idl, List<int> hl, List<int> sl)
         {
-            if (int.TryParse(sid, out int id))
+            for (int i = 0; i < idl.Count; i++)
             {
-                for (int i = 0; i < idl.Count; i++)
+                if (idl[i] == id)
                 {
-                    if (idl[i] == id)
-                    {
-                        Console.WriteLine($"id : {idl[i]} heading : {hl[i]} speed : {sl[i]}");
-                        return;
-                    }
+                    Console.WriteLine($"id : {idl[i]} heading : {hl[i]} speed : {sl[i]}");
+                    return;
                 }
-            
             }
-            else Console.WriteLine("id mot valid");
+            
+            
         }
 
-        static void RemoveTrack(string sid, List<int> idl, List<int> hl, List<int> sl)
+        static void RemoveTrack(int id, List<int> idl, List<int> hl, List<int> sl)
         {
-            if (int.TryParse(sid, out int id))
+            for (int i = 0; i < idl.Count; i++)
             {
-                for (int i = 0; i < idl.Count; i++)
+                if (id == idl[i])
                 {
-                    if (id == idl[i])
-                    {
-                        idl.RemoveAt(i);
-                        hl.RemoveAt(i);
-                        sl.RemoveAt(i);
-                        return;
-                    }
+                    idl.RemoveAt(i);
+                    hl.RemoveAt(i);
+                    sl.RemoveAt(i);
+                    return;
                 }
-                Console.WriteLine($"id {id} not found");
             }
-            else Console.WriteLine("id not valid");
+            Console.WriteLine($"id {id} not found");
         }
         static void Get(List<int> idl, List<int> hl, List<int> sl)
         {
@@ -88,36 +81,54 @@ namespace ex1
                 Console.WriteLine($"id : {idl[i]} heading : {hl[i]} speed : {sl[i]}");
             }
         }
-        static void FilterSpeed(string sspeed, List<int> idl, List<int> hl, List<int> sl)
+        static void FilterSpeed(int speed, List<int> idl, List<int> hl, List<int> sl)
         {
-            if (int.TryParse(sspeed, out int speed))
-            { 
-                for (int i = 0; i < idl.Count; i++)
+            for (int i = 0; i < idl.Count; i++)
+            {
+                if (sl[i] > speed)
                 {
-                    if (sl[i] > speed)
-                    {
-                        Console.WriteLine($"id : {idl[i]} heading : {hl[i]} speed : {sl[i]}");
-                    }
+                    Console.WriteLine($"id : {idl[i]} heading : {hl[i]} speed : {sl[i]}");
                 }
             }
-            else Console.WriteLine("speed not valid");
         }
 
         static void Summery(List<int> idl, List<int> hl, List<int> sl)
         {
+            if (idl.Count == 0)
+            {
+                Console.WriteLine("No tracks in sistem");
+                return;
+            }
             int maxSpeedIndex = 0;
             int allSpeedSum = 0;
-            for ( int i = 0; i < idl.Count; i++)
+            for ( int i = 0; i < sl.Count; i++)
             {
+                allSpeedSum = allSpeedSum + sl[i];
                 if (sl[maxSpeedIndex] < sl[i])
                 { 
                     maxSpeedIndex = i;
                 }
-                allSpeedSum = allSpeedSum + sl[i];
+                
             }
             Console.WriteLine($"fastist : {idl[maxSpeedIndex]}, avrege : {allSpeedSum/idl.Count}, count : {idl.Count}");
         }
 
+        static int GetRuntimeInputs()
+        {
+            bool flag = true;
+            int validInput = 0;
+            while (flag)
+            {
+                string input = Console.ReadLine(); 
+                if (int.TryParse(input,out int num))
+                {
+                    flag = false;
+                    validInput = num;
+                }
+                else Console.Write("input not a number, try again: ");
+            }
+            return validInput;
+        }
         static string Menu()
         {
             Console.WriteLine(
@@ -148,19 +159,19 @@ namespace ex1
                 else if (userImput == "3")
                 {
                     Console.WriteLine("enter id: ");
-                    string id = Console.ReadLine();
+                    int id = GetRuntimeInputs();
                     Get(id, trackIdList, HeadingList, speedList);
                 }
                 else if (userImput == "4")
                 {
                     Console.WriteLine("enter id: ");
-                    string id = Console.ReadLine();
+                    int id = GetRuntimeInputs();
                     RemoveTrack(id, trackIdList, HeadingList, speedList);
                 }
                 else if (userImput == "5")
                 {
                     Console.WriteLine("enter speed: ");
-                    string speed = Console.ReadLine();
+                    int speed = GetRuntimeInputs();
                     FilterSpeed(speed, trackIdList, HeadingList, speedList);
                 }
                 else if (userImput == "6")
