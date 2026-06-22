@@ -1,8 +1,5 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Net.Http.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System;
+
 
 namespace ex1
 {
@@ -12,27 +9,36 @@ namespace ex1
         {
             int[] userInput = new int[3];
             bool flag = true;
-            
+
             while (flag)
             {
                 Console.WriteLine("enter id, speed and heading: ");
                 string sid = Console.ReadLine();
-                if (!int.TryParse(sid, out int id)) continue;
-                   
-                string sspeed = Console.ReadLine();
-                if(!int.TryParse(sspeed, out int speed)) continue;
-
+                if (!int.TryParse(sid, out int id))
+                {
+                    Console.WriteLine("id not valid"); 
+                    continue;
+                }
                 string sheading = Console.ReadLine();
-                if(!int.TryParse(sheading, out int heading)) continue;
-
+                if (! int.TryParse(sheading, out int heading) | heading > 360 | heading < 1)
+                {
+                    Console.WriteLine("heading not valid");
+                    continue; 
+                }
+                string sspeed = Console.ReadLine();
+                if (!int.TryParse(sspeed, out int speed) | speed < 0)
+                {
+                    Console.WriteLine("speed not valid");
+                    continue;
+                }
                 userInput[0] = id;
-                userInput[1] = speed;
-                userInput[2] = heading;
-                break;
+                userInput[1] = heading;
+                userInput[2] = speed;
+                flag = false;
             }
             return userInput;
-
         }
+
         static void CreateTrack(List<int> idl, List<int> hl, List<int> sl)
         {
             int[] userImput = GetUserInput();
@@ -40,14 +46,132 @@ namespace ex1
             hl.Add(userImput[1]);
             sl.Add(userImput[2]);
         }
+        static void Get(string sid, List<int> idl, List<int> hl, List<int> sl)
+        {
+            if (int.TryParse(sid, out int id))
+            {
+                for (int i = 0; i < idl.Count; i++)
+                {
+                    if (idl[i] == id)
+                    {
+                        Console.WriteLine($"id : {idl[i]} heading : {hl[i]} speed : {sl[i]}");
+                        return;
+                    }
+                }
+            
+            }
+            else Console.WriteLine("id mot valid");
+        }
 
+        static void RemoveTrack(string sid, List<int> idl, List<int> hl, List<int> sl)
+        {
+            if (int.TryParse(sid, out int id))
+            {
+                for (int i = 0; i < idl.Count; i++)
+                {
+                    if (id == idl[i])
+                    {
+                        idl.RemoveAt(i);
+                        hl.RemoveAt(i);
+                        sl.RemoveAt(i);
+                        return;
+                    }
+                }
+                Console.WriteLine($"id {id} not found");
+            }
+            else Console.WriteLine("id not valid");
+        }
+        static void Get(List<int> idl, List<int> hl, List<int> sl)
+        {
+            for (int i =0; i<idl.Count; i++)
+            {
+                Console.WriteLine($"id : {idl[i]} heading : {hl[i]} speed : {sl[i]}");
+            }
+        }
+        static void FilterSpeed(string sspeed, List<int> idl, List<int> hl, List<int> sl)
+        {
+            if (int.TryParse(sspeed, out int speed))
+            { 
+                for (int i = 0; i < idl.Count; i++)
+                {
+                    if (sl[i] > speed)
+                    {
+                        Console.WriteLine($"id : {idl[i]} heading : {hl[i]} speed : {sl[i]}");
+                    }
+                }
+            }
+            else Console.WriteLine("speed not valid");
+        }
+
+        static void Summery(List<int> idl, List<int> hl, List<int> sl)
+        {
+            int maxSpeedIndex = 0;
+            int allSpeedSum = 0;
+            for ( int i = 0; i < idl.Count; i++)
+            {
+                if (sl[maxSpeedIndex] < sl[i])
+                { 
+                    maxSpeedIndex = i;
+                }
+                allSpeedSum = allSpeedSum + sl[i];
+            }
+            Console.WriteLine($"fastist : {idl[maxSpeedIndex]}, avrege : {allSpeedSum/idl.Count}, count : {idl.Count}");
+        }
+
+        static string Menu()
+        {
+            Console.WriteLine(
+                "\n\n======== track manager ========\n\n" +
+                "to creat track enter 1\n" +
+                "to see all tracks enter 2\n" +
+                "to see by id enter 3\n" +
+                "to remove by id enter 4\n" +
+                "to filter by speed enter 5\n" +
+                "to get sumery enter 6\n" +
+                "to exit enter 9\n");
+                
+
+            string userInput = Console.ReadLine();
+            return userInput;
+        }
         static void Main()
         {
+            bool flag = true;
             List<int> trackIdList = new List<int>();
             List<int> HeadingList = new List<int>();
             List<int> speedList = new List<int>();
+            while (flag)
+            {
+                string userImput = Menu();
+                if (userImput == "1") CreateTrack(trackIdList, HeadingList, speedList);
+                else if (userImput == "2") Get(trackIdList, HeadingList, speedList);
+                else if (userImput == "3")
+                {
+                    Console.WriteLine("enter id: ");
+                    string id = Console.ReadLine();
+                    Get(id, trackIdList, HeadingList, speedList);
+                }
+                else if (userImput == "4")
+                {
+                    Console.WriteLine("enter id: ");
+                    string id = Console.ReadLine();
+                    RemoveTrack(id, trackIdList, HeadingList, speedList);
+                }
+                else if (userImput == "5")
+                {
+                    Console.WriteLine("enter speed: ");
+                    string speed = Console.ReadLine();
+                    FilterSpeed(speed, trackIdList, HeadingList, speedList);
+                }
+                else if (userImput == "6")
+                {
+                    Summery(trackIdList, HeadingList, speedList);
+                }
+                else if (userImput == "9") flag = false;
 
-            CreateTrack(trackIdList, HeadingList, speedList);
+                else Console.WriteLine("input not valid");
+            }
         }
+        
     }
 }
