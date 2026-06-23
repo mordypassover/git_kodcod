@@ -183,6 +183,5 @@ namespace ex1
                 else Console.WriteLine("input not valid");
             }
         }
-        
     }
 }
