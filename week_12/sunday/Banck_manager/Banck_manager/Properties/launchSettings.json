@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Banck_manager": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
