@@ -17,7 +17,7 @@ namespace bank
         private double _balance;
         private AccountTypeEnum _accountType;
         private bool _isActive;
-        private List<string> _tranactionHistory;
+        private List<string> _tranactionHistory = new List<string>();
 
         public int AccountNumber{ get => _accountNumber; }
 
@@ -137,7 +137,7 @@ namespace bank
             if (from.IsActive && to.IsActive)
             {
                 bool withdrawd = from.Withdraw(amount);
-                to.Deposit(amount);
+                if (withdrawd) { to.Deposit(amount); }
                 return withdrawd;
             }
             else return false;
@@ -151,19 +151,29 @@ namespace bank
             accountList.Add(new BankAccount(1, "mordy"));
             accountList.Add(new BankAccount(5, "", 100.5, "Savings"));
             accountList.Add(new BankAccount(4, "yoni",-222.6 ,"Business"));
-            accountList.Add(new BankAccount(1, "shimi"));
-            accountList.Add(new BankAccount(1, "yanki", 99, "notValid"));
-            accountList[0].Deposit(13);
+            accountList.Add(new BankAccount(15, "shimi"));
+            accountList.Add(new BankAccount(133, "yanki", 99, "notValid"));
+            foreach (BankAccount account in accountList) { Console.WriteLine(account); }
+            accountList[0].Deposit(13.0);
             accountList[3].Deposit(1000.5);
-            accountList[4].Withdraw(910);
-            accountList[2].Withdraw(13);
+            accountList[4].Withdraw(910.0);
+            Console.WriteLine($"a2: {accountList[2].Balance}");
+            accountList[2].Withdraw(13.0);
+            Console.WriteLine($"a2: {accountList[2].Balance}");
             accountList[2].DeActivate();
-            accountList[2].Withdraw(100);
+            Console.WriteLine($"a2: {accountList[2].Balance}");
+            Console.WriteLine($"a2: {accountList[2].Withdraw(10.8)}\n");
             accountList[2].Activate();
+            Console.WriteLine($"a1: {accountList[1].Balance}, a2: {accountList[0].Balance}\n");
             accountList[1].ApplyInterest();
             accountList[2].ApplyInterest();
+            Console.WriteLine($"a1: {accountList[1].Balance}, a2: {accountList[0].Balance}\n");
+            Console.WriteLine($"a4: {accountList[4].Balance}, a0: {accountList[0].Balance}");
             BankAccount.Transfer(accountList[4], accountList[0], 20);
-            
+            Console.WriteLine($"a4: {accountList[4].Balance}, a0: {accountList[0].Balance}\n");
+            accountList[2].PrintTransactionsHistory();
+            accountList[4].PrintTransactionsHistory();
+            foreach (BankAccount account in accountList) { Console.WriteLine(account); }
         }
     }
 }
