@@ -151,17 +151,22 @@ namespace bank
             accountList.Add(new BankAccount(1, "mordy"));
             accountList.Add(new BankAccount(5, "", 100.5, "Savings"));
             accountList.Add(new BankAccount(4, "yoni",-222.6 ,"Business"));
-            accountList.Add(new BankAccount(15, "shimi"));
+            accountList.Add(new BankAccount(15, "shimi", 12));
             accountList.Add(new BankAccount(133, "yanki", 99, "notValid"));
             foreach (BankAccount account in accountList) { Console.WriteLine(account); }
+            
             accountList[0].Deposit(13.0);
             accountList[3].Deposit(1000.5);
-            accountList[4].Withdraw(910.0);
+            Console.WriteLine($"\na0 balance: {accountList[0].Balance}\n" +
+                              $"a3 balance: {accountList[3].Balance}\n");
+            Console.WriteLine($"a4: {accountList[4].Balance}");
+            Console.WriteLine($"try withdraw 910 from a4: {accountList[4].Withdraw(910.0)}");
+            Console.WriteLine($"a4: {accountList[4].Balance}\n");
             Console.WriteLine($"a2: {accountList[2].Balance}");
             accountList[2].Withdraw(13.0);
             Console.WriteLine($"a2: {accountList[2].Balance}");
             accountList[2].DeActivate();
-            Console.WriteLine($"a2: {accountList[2].Balance}");
+            Console.WriteLine(accountList[2]);
             Console.WriteLine($"a2: {accountList[2].Withdraw(10.8)}\n");
             accountList[2].Activate();
             Console.WriteLine($"a1: {accountList[1].Balance}, a2: {accountList[0].Balance}\n");
@@ -171,7 +176,7 @@ namespace bank
             Console.WriteLine($"a4: {accountList[4].Balance}, a0: {accountList[0].Balance}");
             BankAccount.Transfer(accountList[4], accountList[0], 20);
             Console.WriteLine($"a4: {accountList[4].Balance}, a0: {accountList[0].Balance}\n");
-            accountList[2].PrintTransactionsHistory();
+            accountList[3].PrintTransactionsHistory();
             accountList[4].PrintTransactionsHistory();
             foreach (BankAccount account in accountList) { Console.WriteLine(account); }
         }
