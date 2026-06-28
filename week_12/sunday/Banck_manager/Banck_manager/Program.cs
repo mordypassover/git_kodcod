@@ -63,7 +63,7 @@ namespace bank
             private set { _isActive = value; }
         }
 
-        public BankAccount(int accountNumber, string ownerName, string accontType, double balance)
+        public BankAccount(int accountNumber, string ownerName, double balance, string accontType)
         {
             _accountNumber = accountNumber;
             OwnerName = ownerName;
@@ -73,12 +73,12 @@ namespace bank
             Console.WriteLine("1st construct");
         }
 
-        public BankAccount(int accountNumber, string ownerName) : this(accountNumber, ownerName, "Checking", 0.0) 
+        public BankAccount(int accountNumber, string ownerName) : this(accountNumber, ownerName, 0.0, "Checking") 
         {
             Console.WriteLine("2nd construct"); 
         }
 
-        public BankAccount(int accountNumber, string ownerName, double balance) : this(accountNumber, ownerName, "Checking", balance) 
+        public BankAccount(int accountNumber, string ownerName, double balance) : this(accountNumber, ownerName, balance, "Checking") 
         {
             Console.WriteLine("3rd construct");
         }
@@ -108,7 +108,7 @@ namespace bank
             return false;
         }
 
-        public void applyInterest()
+        public void ApplyInterest()
         {
             if (AccountType == AccountTypeEnum.Savings.ToString() && IsActive) 
             { 
@@ -141,6 +141,29 @@ namespace bank
                 return withdrawd;
             }
             else return false;
+        }
+    }
+    class mainProgram
+    {
+        static void Main()
+        {
+            List <BankAccount> accountList = new List<BankAccount>();
+            accountList.Add(new BankAccount(1, "mordy"));
+            accountList.Add(new BankAccount(5, "", 100.5, "Savings"));
+            accountList.Add(new BankAccount(4, "yoni",-222.6 ,"Business"));
+            accountList.Add(new BankAccount(1, "shimi"));
+            accountList.Add(new BankAccount(1, "yanki", 99, "notValid"));
+            accountList[0].Deposit(13);
+            accountList[3].Deposit(1000.5);
+            accountList[4].Withdraw(910);
+            accountList[2].Withdraw(13);
+            accountList[2].DeActivate();
+            accountList[2].Withdraw(100);
+            accountList[2].Activate();
+            accountList[1].ApplyInterest();
+            accountList[2].ApplyInterest();
+            BankAccount.Transfer(accountList[4], accountList[0], 20);
+            
         }
     }
 }
