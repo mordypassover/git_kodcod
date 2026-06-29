@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "morning_code_ex": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
