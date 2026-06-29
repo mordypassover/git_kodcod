@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "track_tracker": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

@@ -10,7 +10,6 @@ namespace testExamps
         {
             Id = id;
             Speed = speed;
-            Console.WriteLine($"hello from Track constructer");
         }
     }
     class Aircraft : Track 
@@ -18,16 +17,7 @@ namespace testExamps
         public double Altitude { get; }
         public Aircraft(int id, double speed, double altitude): base(id, speed) 
         {
-            Altitude = altitude;
-            Console.WriteLine("hello from Aircraft class");
-        }
-    }
-    class MainClass
-    {
-        static void Main()
-        {
-            Aircraft a = new Aircraft(1, 420, 30000);
-            Console.WriteLine($"{a.Id} {a.Speed} {a.Altitude}");
+            Altitude = altitude; 
         }
     }
 }
