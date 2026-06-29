@@ -29,17 +29,17 @@ namespace tracker
             }
         }
 
-        public Platform(int trackId, double speedKnots, double heading) 
+        protected Platform(int trackId, double speedKnots, double heading)
         {
             _trackId = trackId;
             SpeedKnots = speedKnots;
             Heading = heading;
         }
 
-        abstract public string StatusLine();
-        abstract public bool IsTrackable();
+        public abstract string StatusLine();
+        public abstract bool IsTrackable();
 
-        override public string ToString()
+        public override string ToString()
         {
             return $"TrackId: {TrackId} | Speed: {SpeedKnots} kn | Heading: {Heading}";
         }
@@ -48,9 +48,9 @@ namespace tracker
     {
         private double _altitudeFeet;
 
-        public double AltitudeFeet 
+        public double AltitudeFeet
         {
-            get => _altitudeFeet ;
+            get => _altitudeFeet;
             set
             {
                 if (value < 0) _altitudeFeet = 0;
@@ -58,16 +58,16 @@ namespace tracker
             }
         }
 
-        public AirPlatform(int trackId, double speedKnots, double heading,double altitudeFeet)
-            : base(trackId, speedKnots, heading) 
+        public AirPlatform(int trackId, double speedKnots, double heading, double altitudeFeet)
+            : base(trackId, speedKnots, heading)
         {
             AltitudeFeet = altitudeFeet;
         }
-        override public string StatusLine()
+        public override string StatusLine()
         {
             return $"Platform Id: {TrackId} | type: AirPlatform | Speed: {SpeedKnots} kn | Heading: {Heading} | Altitude: {AltitudeFeet} feet";
         }
-        override public bool IsTrackable()
+        public override bool IsTrackable()
         {
             return (SpeedKnots > 0 && AltitudeFeet > 100 && AltitudeFeet < 60000);
         }
@@ -91,27 +91,27 @@ namespace tracker
         {
             DepthMeters = depthMeters;
         }
-        override public string StatusLine()
+        public override string StatusLine()
         {
-            return $"Platform Id: {TrackId} | type: SeaPlatform | Speed: {SpeedKnots} kn | Heading: {Heading} | Depth: {DepthMeters} feet";
+            return $"Platform Id: {TrackId} | type: SeaPlatform | Speed: {SpeedKnots} kn | Heading: {Heading} | Depth: {DepthMeters} meters";
         }
-        override public bool IsTrackable()
+        public override bool IsTrackable()
         {
-            return ( DepthMeters > -300);
+            return (DepthMeters > -300);
         }
     }
     class GroundPlatform : Platform
     {
         private string _terrainType;
 
-        public string TerrainType{ get ; set;}
+        public string TerrainType { get => _terrainType; set { _terrainType = value; } }
 
         public GroundPlatform(int trackId, double speedKnots, double heading, string terrainType)
             : base(trackId, speedKnots, heading)
         {
             TerrainType = terrainType;
         }
-        override public string StatusLine()
+        public override string StatusLine()
         {
             return $"Platform Id: {TrackId} | type: GroundPlatform | Speed: {SpeedKnots} kn | Heading: {Heading} | TerrainType: {TerrainType}";
         }
@@ -132,7 +132,7 @@ namespace tracker
             platformList.Add(new GroundPlatform(999, 46, 100.8, "flat"));
             platformList.Add(new AirPlatform(2, 400.7, 19.48, 900));
 
-            foreach (Platform platform in platformList) { Console.WriteLine($"{platform.StatusLine()} , Trackable = {platform.IsTrackable()}");  }
+            foreach (Platform platform in platformList) { Console.WriteLine($"{platform.StatusLine()} , Trackable = {platform.IsTrackable()}"); }
         }
     }
 }
