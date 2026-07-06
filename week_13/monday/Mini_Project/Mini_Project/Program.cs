@@ -16,8 +16,8 @@ namespace programRun
             {
                 repo.Add(new QuickLookImage(33, -2.4));
             }
-            catch (ArgumentException ex)
-            { Console.WriteLine(ex.Message); }
+            catch (ArgumentException )
+            {  }
             repo.GetAll();
         }
     }
