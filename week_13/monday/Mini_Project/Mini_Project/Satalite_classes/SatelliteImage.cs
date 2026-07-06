@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MiniProject.SatelliteImage
+namespace MiniProject.Satellite_Image
 {
     abstract class SatelliteImage
     {
@@ -33,6 +33,5 @@ namespace MiniProject.SatelliteImage
         => System.IO.File.AppendAllText(path, Format());
 
         public abstract int CalcScore();
-
     }
 }
