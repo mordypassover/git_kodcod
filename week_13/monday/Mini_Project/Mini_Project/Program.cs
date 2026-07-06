@@ -18,8 +18,8 @@ namespace programRun
                 repo.Add(new QuickLookImage(33, -2.4));
             }
             catch (ArgumentException ae)
-            { Console.WriteLine(ae); }
-            repo.GetAll();
+            { Console.WriteLine(ae.Message); }
+            finally { repo.GetAll(); }
         }
     }
 }
