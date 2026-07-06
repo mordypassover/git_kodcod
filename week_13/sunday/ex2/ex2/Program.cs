@@ -1,4 +1,5 @@
-﻿using ex2.ImageMetadataManager__BAD;
+﻿using ex2.Classes_refactord;
+using ex2.ImageMetadataManager__BAD;
 using System;
 
 namespace programRun
@@ -14,6 +15,20 @@ namespace programRun
             Console.WriteLine($"{imm1.Format()}, {imm1.Score()}");
             Console.WriteLine($"{imm2.Format()}, {imm2.Score()}");
             Console.WriteLine($"{imm6.Format()}, {imm6.Score()}");
+
+            Repo<BaseManeger> repo = new Repo<BaseManeger>();
+            repo.Add(new SAR(10, 2.8));
+            repo.Add(new IR(11, 3.2));
+            try
+            {
+                repo.Add(new SAR(33, -2.4)); 
+            } 
+            catch (ArgumentException ex)
+            { Console.WriteLine(ex.Message); }
+            
+            repo.Add(new SAR(12, 22.3));
+            repo.GetAll();
+
         }
     }
 }
