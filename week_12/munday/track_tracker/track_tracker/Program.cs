@@ -122,9 +122,9 @@ namespace tracker
     }
     class MainRun
     {
+        static List<Platform> platformList = new List<Platform>();
         static void Main()
         {
-            List<Platform> platformList = new List<Platform>();
             platformList.Add(new SeaPlatform(1, 4.0, 224.8, -367));
             platformList.Add(new AirPlatform(22, 180.7, 33.8, 85));
             platformList.Add(new SeaPlatform(4, 44, 3, -87));
