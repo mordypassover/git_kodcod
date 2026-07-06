@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ex2.Classes_refactord
+namespace MiniProject.SatelliteImage
 {
-    abstract class BaseManeger: IScore
+    abstract class SatelliteImage
     {
         public int Id;
         public double CloudCover;
         public int Value;
 
-        public BaseManeger(int id, double cloudcover, int value)
+        public SatelliteImage(int id, double cloudcover, int value)
         {
 
             Id = id;
@@ -24,7 +24,7 @@ namespace ex2.Classes_refactord
 
         }
         public override abstract string ToString();
-        
+
         public virtual string Format()
         {
             return $"Image {Id} : {CloudCover}% cloud[{ToString()}]";
@@ -33,6 +33,6 @@ namespace ex2.Classes_refactord
         => System.IO.File.AppendAllText(path, Format());
 
         public abstract int CalcScore();
-        
+
     }
 }
