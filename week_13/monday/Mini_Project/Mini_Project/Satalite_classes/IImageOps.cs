@@ -4,10 +4,8 @@ using System.Text;
 
 namespace Mini_Project.Satalite_Image
 {
-    interface IImageOps
+    interface Iscorabul
     {
         int CalcScore();
-        void Retask();
-        void CalibrateThermal();
     }
 }

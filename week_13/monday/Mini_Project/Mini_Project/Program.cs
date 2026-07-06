@@ -11,13 +11,14 @@ namespace programRun
         {
             
             Repo<SatelliteImage> repo = new Repo<SatelliteImage>();
-            repo.Add(new SarImage(10, 2.8));
+            
             try
             {
+                repo.Add(new SarImage(10, 2.8));
                 repo.Add(new QuickLookImage(33, -2.4));
             }
-            catch (ArgumentException )
-            {  }
+            catch (ArgumentException ae)
+            { Console.WriteLine(ae); }
             repo.GetAll();
         }
     }

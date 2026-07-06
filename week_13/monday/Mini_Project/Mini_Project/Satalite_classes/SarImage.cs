@@ -7,14 +7,14 @@ using System.Text;
 
 namespace Mini_Project.Satellite_Image
 {
-    class SarImage : SatelliteImage, IImageOps
+    class SarImage : SatelliteImage, Iscorabul
     {
         public SarImage(int id, double cloudcover) : base(id, cloudcover, 100) { }
         public override string ToString()
         {
             return "SAR";
         }
-        public override int CalcScore()
+        public int CalcScore()
         {
             return Value - (int)CloudCover;
         }

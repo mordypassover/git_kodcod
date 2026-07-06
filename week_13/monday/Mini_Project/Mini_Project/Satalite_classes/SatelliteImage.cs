@@ -31,7 +31,5 @@ namespace MiniProject.Satellite_Image
         }
         public virtual void SaveToFile(string path)
         => System.IO.File.AppendAllText(path, Format());
-
-        public abstract int CalcScore();
     }
 }

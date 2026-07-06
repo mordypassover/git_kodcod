@@ -1,4 +1,5 @@
-﻿using MiniProject.Satellite_Image;
+﻿using Mini_Project.Satalite_Image;
+using MiniProject.Satellite_Image;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,16 +15,13 @@ namespace ex2.Classes_refactord
         public void Add(T imege) => _repo.Add(imege);
 
         public void GetAll()
+
         {
             foreach (T imege in _repo)
             {
-                Console.WriteLine($"{imege.Format()}, {imege.CalcScore()}");
+                if (imege is Iscorabul scorabulimege)
+                Console.WriteLine($"{imege.Format()}, {scorabulimege.CalcScore()}");
             }
         }
-
-
-
-
-
     }
 }
