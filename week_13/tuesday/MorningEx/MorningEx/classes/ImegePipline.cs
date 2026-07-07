@@ -6,7 +6,9 @@ namespace MorningEx.classes
 {
     class ImegePipline
     {
-        private readonly MemoryStore _store = new MemoryStore();
+        private readonly IStorer _store;
+
+        public ImegePipline(IStorer Store) { _store = Store; }
 
         public void AddToStore(List<SatelliteImage> imeges) 
         {

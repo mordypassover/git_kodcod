@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MorningEx.classes
 {
-    class MemoryStore
+    class MemoryStore:IStorer
     {
         public List<SatelliteImage> Data = new List<SatelliteImage>();
 

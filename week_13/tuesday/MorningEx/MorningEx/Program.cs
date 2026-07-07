@@ -8,7 +8,7 @@ class Program
 {
     public static void Main()
     {
-        ImegePipline pipline = new ImegePipline();
+        ImegePipline pipline = new ImegePipline(new DiskStore("disc.txt"));
 
         pipline.AddToStore
         (
