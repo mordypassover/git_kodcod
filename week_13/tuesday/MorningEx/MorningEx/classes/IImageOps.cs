@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MorningEx.Satalite_Image
+namespace MorningEx.classes
 {
     interface Iscorabul
     {

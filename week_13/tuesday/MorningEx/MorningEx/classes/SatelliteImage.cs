@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MorningEx.Satalite_Image
+namespace MorningEx.classes
 {
     abstract class SatelliteImage
     {
         public int Id;
         public double CloudCover;
-        public int Value;
+        public int Value { get; set; }
 
         public SatelliteImage(int id, double cloudcover, int value)
         {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MorningEx.Satalite_Image;
+namespace MorningEx.classes;
     class SarImage : SatelliteImage, Iscorabul
     {
         public SarImage(int id, double cloudcover) : base(id, cloudcover, 100) { }
@@ -13,10 +13,8 @@ namespace MorningEx.Satalite_Image;
         }
         public int CalcScore()
         {
-            return Value - (int)CloudCover;
+            return Value = Value - (int)CloudCover;
         }
-        void Retask() { throw new InvalidOperationException("SarImage cant retask"); }
-        void CalibrateThermal() { throw new InvalidOperationException("SarImage dosnt have thermul band"); }
     } 
-}
+
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace MorningEx.Satalite_Image
+namespace MorningEx.classes
 {
     class Repo<T> where T : SatelliteImage
     {
@@ -14,7 +14,7 @@ namespace MorningEx.Satalite_Image
         public void Add(T imege) => _repo.Add(imege);
 
         public void GetAll()
-
+            
         {
             foreach (T imege in _repo)
             {
