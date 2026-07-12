@@ -13,7 +13,8 @@ namespace MorningEx.classes
         public int CountData() => File.ReadAllLines(_path).Length;
         public void Save(SatelliteImage img)
         {
-            File.AppendAllText(_path, "\n");
+
+            File.AppendAllText(_path, $"{img.ToString()}\n");
         }
         
     }
