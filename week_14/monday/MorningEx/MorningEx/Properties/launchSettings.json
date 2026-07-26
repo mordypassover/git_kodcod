@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MorningEx": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
