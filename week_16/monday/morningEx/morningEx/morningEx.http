@@ -1,0 +1,6 @@
+@morningEx_HostAddress = http://localhost:5157
+
+GET {{morningEx_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
