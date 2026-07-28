@@ -107,6 +107,6 @@ public class WeatherReadingsController : ControllerBase
             query = query.Where(r => r.TemperatureCelsius <= maxTemp.Value);
         }
         return Ok(query.ToList());
-    }
+    } 
         
 }
