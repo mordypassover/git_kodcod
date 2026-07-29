@@ -1,4 +1,7 @@
-using VehicleFleetRegistryAPI.Repos;
+using MorningEx.Repositories;
+using MorningEx.Services;
+using MorningEx.Middleware;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,17 +11,25 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<IVehicleRepo, VehicleRepo>();
+
+
+// Register repositories as Singleton (in-memory data persists) 
+builder.Services.AddSingleton<IProductRepo, ProductRepo>();
+builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
+
+// Register services as Scoped (one instance per HTTP request) 
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    
-}
+
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 app.UseSwagger();
 app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 
