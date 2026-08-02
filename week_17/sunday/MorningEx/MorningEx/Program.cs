@@ -1,6 +1,3 @@
-using SatelliteTelemetryAnalyzerAPI.repositorys;
-using SatelliteTelemetryAnalyzerAPI.Services;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,11 +6,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddSingleton<ISatelliteRepository, SatelliteRepository>();
-builder.Services.AddSingleton<ITelemetryRepository, TelemetryRepository>();
-
-builder.Services.AddScoped<ITelemetryService, TelemetryService>();
 
 var app = builder.Build();
 
