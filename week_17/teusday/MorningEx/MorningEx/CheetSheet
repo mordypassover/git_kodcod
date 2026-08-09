@@ -1,0 +1,33 @@
+1. run comntaner
+
+	docker run -d --name mysql-db \
+	  -e MYSQL_ROOT_PASSWORD=yourpassword \
+	  -e MYSQL_DATABASE=LibraryDb \
+	  -p 3306:3306 \
+	  mysql:8.0
+
+	  or:
+	  docker start mysql-db
+
+2. creat model/s
+
+
+3. edit json (conection string)
+
+	"ConnectionStrings": {
+	  "DefaultConnection": "server=localhost;port=3306;database=LibraryDb;user=root;password=yourpassword;"
+	}
+
+4. add data file / context and register in program.cs
+
+
+5. add Packages
+
+	dotnet add package Microsoft.EntityFrameworkCore.Design
+	dotnet add package Pomelo.EntityFrameworkCore.MySql
+
+6. migrate 
+
+	dotnet ef migrations add InitialCreate
+
+	dotnet ef database update
