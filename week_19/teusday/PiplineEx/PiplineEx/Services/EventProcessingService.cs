@@ -46,17 +46,12 @@ public class EventProcessingService
 
 
         }
-        //catch (Exception ex)
-        //{
-        //Console.WriteLine($"✗ Error processing traffic event: { ex.Message}");
-        //return false;
-        //}
         catch (Exception ex)
         {
-            Console.WriteLine($"✗ Error processing parking event:");
-            Console.WriteLine(ex);
+            Console.WriteLine($"✗ Error processing traffic event: {ex.Message}");
             return false;
         }
+
     }
     public async Task<bool> ProcessWeatherEventAsync(string jsonMessage)
     {

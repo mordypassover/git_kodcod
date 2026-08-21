@@ -1,0 +1,14 @@
+{
+  "Kafka": {
+    "BootstrapServers": "localhost:9092",
+    "GroupId": "myGroup2",
+    "Topics": {
+      "Models": "models",
+      "Units": "units",
+      "Tracks": "tracks"
+    }
+  },
+  "ConnectionStrings": {
+    "sqlString": "Server=localhost;Port=3306;Database=DronesDb;User=root;Password=rootpassword;"
+  }
+}

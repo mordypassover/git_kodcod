@@ -1,0 +1,13 @@
+{
+  "Kafka": {
+    "BootstrapServers": "localhost:9092",
+    "GroupId": "my-group2",
+    "Topics": {
+      "Analysts": "analysts",
+      "Calls": "calls"
+    }
+  },
+  "ConnectionStrings": {
+    "sqlString": "Server=localhost;Port=3306;Database=AnlysisCalls;User=root;Password=rootpassword;"
+  }
+}

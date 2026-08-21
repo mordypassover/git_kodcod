@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "EtlConsumer": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

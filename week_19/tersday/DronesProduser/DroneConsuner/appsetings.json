@@ -2,8 +2,9 @@
   "Kafka": {
     "BootstrapServers": "localhost:9092",
     "Topics": {
-      "Analysts": "analysts",
-      "Calls": "calls"
+      "Models": "models",
+      "Units": "units",
+      "Tracks": "tracks"
     }
   }
 }
